@@ -2,14 +2,12 @@
 
 /**
  * Class WP_EXT_ShortCode_CodeTel
- * ------------------------------------------------------------------------------------------------------------------ */
-
+ */
 class WP_EXT_ShortCode_CodeTel extends WP_EXT_ShortCode {
 
 	/**
 	 * Constructor.
-	 * -------------------------------------------------------------------------------------------------------------- */
-
+	 */
 	public function __construct() {
 		parent::__construct();
 
@@ -22,22 +20,19 @@ class WP_EXT_ShortCode_CodeTel extends WP_EXT_ShortCode {
 
 	/**
 	 * Plugin: `initialize`.
-	 * -------------------------------------------------------------------------------------------------------------- */
-
+	 */
 	public function run() {
 		add_shortcode( $this->code_ID, [ $this, 'shortcode' ] );
 	}
 
 	/**
 	 * ShortCode.
-	 * -------------------------------------------------------------------------------------------------------------- */
-
+	 */
 	public function shortcode( $atts, $content = null ) {
 
 		/**
 		 * Options.
-		 * ---------------------------------------------------------------------------------------------------------- */
-
+		 */
 		$defaults = [
 			'number' => '',
 		];
@@ -46,8 +41,7 @@ class WP_EXT_ShortCode_CodeTel extends WP_EXT_ShortCode {
 
 		/**
 		 * Rendering data.
-		 * ---------------------------------------------------------------------------------------------------------- */
-
+		 */
 		$number = ( $atts['number'] ) ? $atts['number'] . '' : '';
 		$number = esc_html( $number );
 		$tel    = preg_replace( '#[^0-9\+]#', '', $number );
@@ -63,8 +57,7 @@ class WP_EXT_ShortCode_CodeTel extends WP_EXT_ShortCode {
  * Helper function to retrieve the static object without using globals.
  *
  * @return WP_EXT_ShortCode_CodeTel
- * ------------------------------------------------------------------------------------------------------------------ */
-
+ */
 function WP_EXT_ShortCode_CodeTel() {
 	static $object;
 
@@ -77,6 +70,5 @@ function WP_EXT_ShortCode_CodeTel() {
 
 /**
  * Initialize the object on `plugins_loaded`.
- * ------------------------------------------------------------------------------------------------------------------ */
-
+ */
 add_action( 'plugins_loaded', [ WP_EXT_ShortCode_CodeTel(), 'run' ] );

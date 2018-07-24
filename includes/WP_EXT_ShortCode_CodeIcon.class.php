@@ -2,14 +2,12 @@
 
 /**
  * Class WP_EXT_ShortCode_CodeIcon
- * ------------------------------------------------------------------------------------------------------------------ */
-
+ */
 class WP_EXT_ShortCode_CodeIcon extends WP_EXT_ShortCode {
 
 	/**
 	 * Constructor.
-	 * -------------------------------------------------------------------------------------------------------------- */
-
+	 */
 	public function __construct() {
 		parent::__construct();
 
@@ -22,22 +20,19 @@ class WP_EXT_ShortCode_CodeIcon extends WP_EXT_ShortCode {
 
 	/**
 	 * Plugin: `initialize`.
-	 * -------------------------------------------------------------------------------------------------------------- */
-
+	 */
 	public function run() {
 		add_shortcode( $this->code_ID, [ $this, 'shortcode' ] );
 	}
 
 	/**
 	 * ShortCode.
-	 * -------------------------------------------------------------------------------------------------------------- */
-
+	 */
 	public function shortcode( $atts, $content = null ) {
 
 		/**
 		 * Options.
-		 * ---------------------------------------------------------------------------------------------------------- */
-
+		 */
 		$defaults = [
 			'type'     => '',
 			'size'     => '',
@@ -52,8 +47,7 @@ class WP_EXT_ShortCode_CodeIcon extends WP_EXT_ShortCode {
 
 		/**
 		 * Rendering data.
-		 * ---------------------------------------------------------------------------------------------------------- */
-
+		 */
 		$classes = ( $atts['type'] ) ? $atts['type'] . '' : 'fas fa-star';
 		$classes .= ( $atts['size'] ) ? ' fa-' . $atts['size'] . '' : '';
 		$classes .= ( $atts['rotate'] ) ? ' fa-rotate-' . $atts['rotate'] . '' : '';
@@ -72,8 +66,7 @@ class WP_EXT_ShortCode_CodeIcon extends WP_EXT_ShortCode {
  * Helper function to retrieve the static object without using globals.
  *
  * @return WP_EXT_ShortCode_CodeIcon
- * ------------------------------------------------------------------------------------------------------------------ */
-
+ */
 function WP_EXT_ShortCode_CodeIcon() {
 	static $object;
 
@@ -86,6 +79,5 @@ function WP_EXT_ShortCode_CodeIcon() {
 
 /**
  * Initialize the object on `plugins_loaded`.
- * ------------------------------------------------------------------------------------------------------------------ */
-
+ */
 add_action( 'plugins_loaded', [ WP_EXT_ShortCode_CodeIcon(), 'run' ] );
